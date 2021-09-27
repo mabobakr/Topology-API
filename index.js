@@ -16,6 +16,13 @@ result.forEach(value => console.log(value))
 console.log("writing to file...")
 api.writeJSON(result[1].id)
 
+console.log("topology comoponents")
+let components = api.queryDevices(result[1].id)
+console.log(components)
+
+components = api.queryDevicesWithNetlistNode(result[1].id, 'vin')
+console.log(components)
+
 console.log("now deleting one item")
 api.deleteTopology(result[1].id)
 

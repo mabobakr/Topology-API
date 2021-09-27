@@ -7,7 +7,7 @@ exports.readJSON = function (fileName) {
     topologies.push(new Topology(fileName));
   } catch (err) {
     console.log(err.message);
-	// return result
+    // return result
   }
 };
 
@@ -22,10 +22,27 @@ exports.writeJSON = function (topologyId) {
 };
 
 exports.deleteTopology = function (topologyId) {
-	topologies.splice(topologies.findIndex(topology => topology.id == topologyId), 1)
-	// return result
-}
+  topologies.splice(
+    topologies.findIndex((topology) => topology.id == topologyId),
+    1
+  );
+  // return result
+};
 
+exports.queryDevices = function (topologyId) {
+  let topology = topologies.find((topology) => topology.id == topologyId);
+  if (topology) return topology.components;
+};
 
-// DeviceList queryDevices(TopologyID);
-// DeviceList queryDevicesWithNetlistNode(TopologyID, NetlistNodeID);
+exports.queryDevicesWithNetlistNode = function (topologyId, NetlistNodeId) {
+  let components = this.queryDevices(topologyId);
+
+  var nodes;
+  return components.filter((component) => {
+    nodes = Object.values(component.netlist);
+    for (let i = 0; i < nodes.length; i++) {
+      if (nodes[i] == NetlistNodeId) return true;
+    }
+    return false;
+  });
+};
