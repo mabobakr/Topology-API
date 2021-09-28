@@ -75,15 +75,15 @@ exports.queryDevices = function (topologyId) {
 };
 
 /**
- * @function queryDevicesWithNetlistNode
+ * @function getDevicesWithNode
  * @param {String} topologyId
- * @param {String} NetlistNodeId
+ * @param {String} netlistNodeId
  * @description Get devices of the topology specified by topologyId that are connected to given netlist node
  * @returns {Object[]} Array of objects representing required devices in the topology
  * @throws {Error} If topology doesn't exist
  */
 
-exports.queryDevicesWithNetlistNode = function (topologyId, NetlistNodeId) {
+exports.getDevicesWithNode = function (topologyId, netlistNodeId) {
   // Find required topology
   let topology = topologies.find((topology) => topology.id == topologyId);
 
@@ -91,6 +91,6 @@ exports.queryDevicesWithNetlistNode = function (topologyId, NetlistNodeId) {
   if (!topology) throw new Error("The given topology doesn't exist");
 
   // If found, return array of devices
-  let devices = topology.getNodeDevices(NetlistNodeId);
+  let devices = topology.getNodeDevices(netlistNodeId);
   return devices;
 };
