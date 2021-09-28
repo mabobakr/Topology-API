@@ -70,7 +70,7 @@ exports.queryDevices = function (topologyId) {
   // If found return its components
   if (topology) return topology.components;
 
-  // If not found log the error and return null
+  // If not found throw an error
   throw new Error("The given topology doesn't exist");
 };
 
@@ -87,7 +87,7 @@ exports.queryDevicesWithNetlistNode = function (topologyId, NetlistNodeId) {
   // Find required topology
   let topology = topologies.find((topology) => topology.id == topologyId);
 
-  // If not found, log the error and return null
+  // If not found, throw an error
   if (!topology) throw new Error("The given topology doesn't exist");
 
   // If found, return array of devices
