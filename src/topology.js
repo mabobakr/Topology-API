@@ -19,7 +19,6 @@ class Topology {
   }
 
   /**
-   * @function writeToFile
    * @description Write this topology to a file
    */
   writeToFile() {
@@ -30,7 +29,6 @@ class Topology {
   }
 
   /**
-   * @function getNodeDevices
    * @param {String} NetlistNodeId
    * @description  Get devices of this topology that are connected to the given netlist node
    * @returns {Object[]} array of devices of this topology that are connected to the given netlist node
